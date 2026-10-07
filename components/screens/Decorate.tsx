@@ -60,7 +60,7 @@ export default function Decorate({ booth, update, go }: ScreenProps) {
       {/* Canvas */}
       <div ref={canvas} style={{ display: 'flex', justifyContent: 'center', padding: '20px 24px 0', position: 'relative' }}>
         <div style={{ position: 'relative', rotate: '-2deg' }}>
-          <Strip shots={booth.shots} frameHeight={frameH} filter={booth.filter} border={booth.border} />
+          <Strip shots={booth.shots} photos={booth.photos} frameHeight={frameH} filter={booth.filter} border={booth.border} />
           <AnimatePresence>
             {placed.map((p) => (
               <motion.div

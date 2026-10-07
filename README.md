@@ -95,7 +95,7 @@ Things you can try:
 
 - **New booth:** pick a layout (4×1, 2×1, 2×2, 3×1), solo or invite, and a tag
 - **Invite:** copy the one-time link and choose who to invite; the next screen is their lock screen getting the push
-- **Capture:** 3-2-1 countdown with flash for each shot, plus timer, flash and flip toggles
+- **Capture:** uses your real camera. Confetti asks first, then the browser prompts for permission. 3-2-1 countdown with flash for each shot, plus timer, flash and flip (front/back) toggles. Your photos fill the strip through to Share, Story, Print and Home. If the camera is blocked or missing, you can carry on with placeholder shots.
 - **Waiting:** *Nudge Mia* and watch her half come in live; add a caption that follows the strip through to the story
 - **Layout pick:** reroll the AI suggestions and tap *why this one*
 - **Decorate:** add stickers and drag them around (double-click one to remove it), plus text styles, filters (B&W, warm, faded, bold) and borders

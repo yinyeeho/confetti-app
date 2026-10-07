@@ -31,7 +31,7 @@ export default function Story({ booth, go, toast }: ScreenProps) {
 
       <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <motion.div initial={{ scale: 0.8, rotate: -6, opacity: 0 }} animate={{ scale: 1, rotate: 3, opacity: 1 }} transition={{ type: 'spring', stiffness: 260, damping: 18 }} style={{ position: 'relative' }}>
-          <Strip shots={booth.shots} width={150} frameHeight={72} shadow={0} radius={6} filter={booth.filter} border={booth.border} />
+          <Strip shots={booth.shots} photos={booth.photos} width={150} frameHeight={72} shadow={0} radius={6} filter={booth.filter} border={booth.border} />
           {/* washi tape */}
           <div style={{ position: 'absolute', left: 43, top: -14, width: 64, height: 22, background: '#FFC93CD9', border: '1.5px solid #19191980' }} />
           <div style={{ position: 'absolute', left: 6, bottom: -40, rotate: '-3deg', fontFamily: fonts.script, fontSize: 26, color: cream, whiteSpace: 'nowrap' }}>

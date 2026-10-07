@@ -29,11 +29,11 @@ export interface ScreenProps {
   save: () => void
 }
 
-export interface SavedStrip { id: number; caption: string; filter: Booth['filter'] }
+export interface SavedStrip { id: number; caption: string; filter: Booth['filter']; photos?: string[] }
 
 const freshBooth = (): Booth => ({
   layout: '4x1', solo: false, tag: 'Friends', friend: 'Mia', shots: 4,
-  filter: 'none', border: 'classic', stickers: ['heart', 'star'], keepsake: 'passport',
+  filter: 'none', border: 'classic', stickers: ['heart', 'star'], keepsake: 'passport', photos: [],
 })
 
 const variants = {
@@ -67,9 +67,9 @@ export default function AppShell() {
   }, [])
 
   const save = useCallback(() => {
-    setSaved((s) => [{ id: Date.now(), caption: `${booth.friend.toLowerCase()} · today`, filter: booth.filter }, ...s])
+    setSaved((s) => [{ id: Date.now(), caption: `${booth.friend.toLowerCase()} · today`, filter: booth.filter, photos: booth.photos }, ...s])
     setBooth(freshBooth())
-  }, [booth.friend, booth.filter])
+  }, [booth.friend, booth.filter, booth.photos])
 
   const props: ScreenProps = { booth, update, go, toast, saved, save }
 

@@ -33,4 +33,5 @@ export interface Booth {
   stickers: StickerKind[]
   caption?: string
   keepsake: Keepsake
+  photos: string[]   // data URLs captured from the camera, in shot order
 }

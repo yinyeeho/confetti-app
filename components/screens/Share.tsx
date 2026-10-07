@@ -24,7 +24,7 @@ export default function Share({ booth, go, toast, save }: ScreenProps) {
       <div style={{ padding: '0 24px', opacity: 0.35 }}>
         <div style={{ fontFamily: fonts.display, fontSize: 20, fontWeight: 700, color: colors.ink }}>Strip #0064</div>
         <div style={{ display: 'flex', justifyContent: 'center', marginTop: 16 }}>
-          <Strip shots={booth.shots} width={130} frameHeight={58} gap={5} pad={8} shadow={0} radius={6} filter={booth.filter} border={booth.border} />
+          <Strip shots={booth.shots} photos={booth.photos} width={130} frameHeight={58} gap={5} pad={8} shadow={0} radius={6} filter={booth.filter} border={booth.border} />
         </div>
       </div>
       <Tap aria-label="Back to keepsake" onClick={() => go('keepsake', -1)} style={{ position: 'absolute', inset: 0, background: '#19191973', cursor: 'default' }} />

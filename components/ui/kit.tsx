@@ -3,6 +3,8 @@ import React from 'react'
 import { motion, HTMLMotionProps } from 'framer-motion'
 import { colors, fonts } from '@/lib/tokens'
 import Icon, { IconName } from './Icon'
+import { Filter } from '@/lib/types'
+import { FILTER_CSS } from './Strip'
 
 // ─── Tap: unstyled pressable with a squish ─────────────────────────────
 export function Tap({ style, children, ...rest }: HTMLMotionProps<'button'>) {
@@ -173,9 +175,9 @@ export function Dots({ count, active }: { count: number; active: number }) {
 
 // ─── Strips ────────────────────────────────────────────────────────────
 export function MiniStrip({
-  frames, width = 64, frameHeight = 38, rotate = 0, caption, shadow = 4, style,
+  frames, photos = [], filter = 'none', width = 64, frameHeight = 38, rotate = 0, caption, shadow = 4, style,
 }: {
-  frames: string[]; width?: number | string; frameHeight?: number; rotate?: number; caption?: string; shadow?: number; style?: React.CSSProperties
+  frames: string[]; photos?: string[]; filter?: Filter; width?: number | string; frameHeight?: number; rotate?: number; caption?: string; shadow?: number; style?: React.CSSProperties
 }) {
   return (
     <div style={{
@@ -184,7 +186,14 @@ export function MiniStrip({
       transform: `rotate(${rotate}deg)`, ...style,
     }}>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 3, width }}>
-        {frames.map((c, i) => <div key={i} style={{ background: c, borderRadius: 4, height: frameHeight }} />)}
+        {frames.map((c, i) => (
+          <div key={i} style={{ background: c, borderRadius: 4, height: frameHeight, overflow: 'hidden' }}>
+            {photos[i] && (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img src={photos[i]} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', filter: FILTER_CSS[filter] }} />
+            )}
+          </div>
+        ))}
       </div>
       {caption && (
         <div style={{ marginTop: 6, fontFamily: fonts.body, fontSize: 9, fontWeight: 700, lineHeight: '12px', color: colors.ink }}>

@@ -23,6 +23,34 @@ const PATTERN = [0, 1, 2, 0, 1, 2]
 export const shotColor = (i: number, filter: Filter = 'none') => FILTERS[filter][PATTERN[i % PATTERN.length]]
 export const filterSwatch = (f: Filter) => FILTERS[f]
 
+// The same filters as CSS, for real photos
+export const FILTER_CSS: Record<Filter, string> = {
+  none:  'none',
+  bw:    'grayscale(1) contrast(1.1)',
+  warm:  'sepia(0.35) saturate(1.35) hue-rotate(-8deg)',
+  faded: 'contrast(0.8) brightness(1.12) saturate(0.6)',
+  bold:  'saturate(1.8) contrast(1.15)',
+}
+
+// One frame of a strip: the photo if there is one, otherwise its accent color
+export function Frame({ index, photo, filter = 'none', filled = true, style }: {
+  index: number; photo?: string; filter?: Filter; filled?: boolean; style?: React.CSSProperties
+}) {
+  return (
+    <motion.div
+      initial={false}
+      animate={{ backgroundColor: filled ? shotColor(index, filter) : colors.tint }}
+      transition={{ duration: 0.35 }}
+      style={{ position: 'relative', overflow: 'hidden', ...style }}
+    >
+      {photo && filled && (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img src={photo} alt={`Shot ${index + 1}`} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', filter: FILTER_CSS[filter], transition: 'filter .3s ease' }} />
+      )}
+    </motion.div>
+  )
+}
+
 export function borderStyle(border: Border): React.CSSProperties {
   switch (border) {
     case 'polaroid': return { borderRadius: 4, border: `3px solid ${colors.ink}`, paddingBottom: 34 }
@@ -56,6 +84,7 @@ export function Sticker({ kind, size = 40 }: { kind: StickerKind; size?: number 
 
 interface StripProps {
   shots?: number
+  photos?: string[]
   filled?: number          // how many shots are developed; the rest show as empty slots
   width?: number
   frameHeight?: number
@@ -70,7 +99,7 @@ interface StripProps {
 }
 
 export default function Strip({
-  shots = 4, filled = shots, width = 180, frameHeight = 88, filter = 'none', border = 'classic',
+  shots = 4, photos = [], filled = shots, width = 180, frameHeight = 88, filter = 'none', border = 'classic',
   shadow = 6, rotate = 0, gap = 6, pad = 10, radius = 8, children,
 }: StripProps) {
   return (
@@ -82,13 +111,7 @@ export default function Strip({
         ...borderStyle(border),
       }}>
         {Array.from({ length: shots }).map((_, i) => (
-          <motion.div
-            key={i}
-            initial={false}
-            animate={{ backgroundColor: i < filled ? shotColor(i, filter) : colors.tint }}
-            transition={{ duration: 0.35 }}
-            style={{ height: frameHeight, borderRadius: radius }}
-          />
+          <Frame key={i} index={i} photo={photos[i]} filter={filter} filled={i < filled} style={{ height: frameHeight, borderRadius: radius }} />
         ))}
         {border === 'polaroid' && (
           <div style={{ position: 'absolute', bottom: 10, left: 0, right: 0, textAlign: 'center', fontFamily: fonts.script, fontSize: 18, color: colors.ink }}>

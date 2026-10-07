@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { colors, fonts } from '@/lib/tokens'
 import { Avatar, Eyebrow, Footer, Header, RoundButton, Screen, Tap, Title } from '../ui/kit'
 import Icon from '../ui/Icon'
+import { Frame } from '../ui/Strip'
 import type { ScreenProps } from '../AppShell'
 
 function Progress({ name, letter, color, done, total, sub }: { name: string; letter: string; color: string; done: number; total: number; sub?: string }) {
@@ -76,11 +77,16 @@ export default function Waiting({ booth, update, go, toast }: ScreenProps) {
       {/* Developing strip */}
       <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 24px 0' }}>
         <div style={{ width: 130, padding: '12px 12px 14px', background: colors.night, borderRadius: 14 }}>
+          {/* Your shots, still "developing" until both halves are in */}
           <motion.div
-            animate={theyreDone ? { background: `linear-gradient(180deg, ${colors.citrus} 0 24%, ${colors.cobaltDeep} 25% 49%, ${colors.hibiscus} 50% 74%, ${colors.citrus} 75%)` } : { opacity: [0.75, 1, 0.75] }}
-            transition={theyreDone ? { duration: 0.6 } : { duration: 2, repeat: Infinity }}
-            style={{ height: 180, borderRadius: 8, background: 'linear-gradient(180deg, #2F3134, #1E2023)' }}
-          />
+            animate={theyreDone ? { filter: 'blur(0px) brightness(1) saturate(1)', opacity: 1 } : { filter: 'blur(3px) brightness(0.45) saturate(0.3)', opacity: [0.8, 1, 0.8] }}
+            transition={theyreDone ? { duration: 1.2 } : { duration: 2, repeat: Infinity }}
+            style={{ height: 180, borderRadius: 8, overflow: 'hidden', display: 'flex', flexDirection: 'column', gap: 3 }}
+          >
+            {Array.from({ length: booth.shots }).map((_, i) => (
+              <Frame key={i} index={i} photo={booth.photos[i]} style={{ flex: 1, borderRadius: 3 }} />
+            ))}
+          </motion.div>
           <div style={{ marginTop: 12, textAlign: 'center', fontFamily: fonts.body, fontSize: 9, fontWeight: 700, letterSpacing: '0.14em', color: theyreDone ? colors.citrus : colors.amber }}>
             {theyreDone ? '···· READY ····' : '···· DEVELOPING ····'}
           </div>

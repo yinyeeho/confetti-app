@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import { colors, fonts } from '@/lib/tokens'
 import { Button, RoundButton, Screen, Tap } from '../ui/kit'
-import { shotColor } from '../ui/Strip'
+import { Frame } from '../ui/Strip'
 import type { ScreenProps } from '../AppShell'
 
 type Stage = 'review' | 'printing' | 'ready'
@@ -45,7 +45,7 @@ export default function Print({ booth, go, toast }: ScreenProps) {
       <div style={{ padding: '22px 22px 0' }}>
         <div style={{ display: 'flex', gap: 14, padding: 16, background: '#fff', border: `2.5px solid ${colors.ink}`, borderRadius: 16, boxShadow: `4px 4px 0 ${colors.ink}` }}>
           <div style={{ width: 56, height: 74, padding: 4, borderRadius: 8, background: colors.cream, border: `2px solid ${colors.ink}`, display: 'flex', flexDirection: 'column', gap: 2.5 }}>
-            {Array.from({ length: booth.shots }).map((_, i) => <div key={i} style={{ flex: 1, borderRadius: 2, background: shotColor(i, booth.filter) }} />)}
+            {Array.from({ length: booth.shots }).map((_, i) => <Frame key={i} index={i} photo={booth.photos[i]} filter={booth.filter} style={{ flex: 1, borderRadius: 2 }} />)}
           </div>
           <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 2 }}>
             <span style={{ fontFamily: fonts.display, fontSize: 15, fontWeight: 600, color: colors.ink }}>Strip #0064</span>
@@ -88,7 +88,7 @@ export default function Print({ booth, go, toast }: ScreenProps) {
                 border: `2.5px solid ${colors.ink}`, borderTop: 'none', borderRadius: '0 0 10px 10px', boxShadow: `3px 3px 0 ${colors.ink}`,
               }}
             >
-              {[0, 1].map((i) => <div key={i} style={{ height: 26, borderRadius: 4, background: shotColor(i, booth.filter) }} />)}
+              {[0, 1].map((i) => <Frame key={i} index={i} photo={booth.photos[i]} filter={booth.filter} style={{ height: 26, borderRadius: 4 }} />)}
             </motion.div>
           </div>
         </div>

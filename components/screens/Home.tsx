@@ -101,6 +101,8 @@ export default function Home({ go, saved }: ScreenProps) {
             <motion.div key={s.id} layout initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }}>
               <MiniStrip
                 frames={[0, 1, 2].map((k) => shotColor(k + (i % 2), s.filter))}
+                photos={s.photos}
+                filter={s.filter}
                 width="100%"
                 frameHeight={30}
                 shadow={3}
