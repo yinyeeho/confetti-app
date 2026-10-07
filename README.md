@@ -5,6 +5,12 @@
 This repo is the interactive Confetti app, built screen-for-screen from the **Confetti Booth** designs in Paper (hibiscus, cobalt, citrus and cream, with the signature sticker/offset-shadow treatment).
 Full case study: [yinyeeho.com/pages/confetti](https://yinyeeho.com/pages/confetti)
 
+<h2>Try it out yourself</h2>
+https://confetti-app-zeta.vercel.app/
+<br/>
+<br/>
+<br/>
+
 <p align="center">
   <a href="docs/media/hero.mp4"><img src="docs/media/hero.gif" alt="Confetti overview" width="640"></a>
 </p>
