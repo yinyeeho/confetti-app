@@ -29,13 +29,14 @@ function Progress({ name, letter, color, done, total, sub }: { name: string; let
 
 export default function Waiting({ booth, update, go, toast }: ScreenProps) {
   const friend = booth.friend
-  const [theirShots, setTheirShots] = useState(0)
-  const [nudged, setNudged] = useState(false)
+  const [theirShots, setTheirShots] = useState(booth.friendDone ? booth.shots : 0)
+  const [nudged, setNudged] = useState(!!booth.friendDone)
   const [editing, setEditing] = useState(false)
   const timers = useRef<ReturnType<typeof setTimeout>[]>([])
   useEffect(() => () => timers.current.forEach(clearTimeout), [])
 
   const theyreDone = theirShots >= booth.shots
+  useEffect(() => { if (theyreDone && !booth.friendDone) update({ friendDone: true }) }, [theyreDone, booth.friendDone, update])
 
   const nudge = () => {
     if (nudged) return
@@ -46,7 +47,7 @@ export default function Waiting({ booth, update, go, toast }: ScreenProps) {
   }
 
   const next = () => {
-    if (theyreDone) return go('layoutPick')
+    if (theyreDone) return go('decorate')
     nudge()
   }
 

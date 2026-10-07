@@ -89,7 +89,7 @@ Everything lives in [`lib/tokens.ts`](lib/tokens.ts), with shared components in 
 
 The prototype follows the full flow from the Paper file:
 
-**Splash → How it works → Home → New booth → Invite → Notification → Pick booth → Capture → Waiting → Layout pick → Decorate → Keepsake → Share** (→ Story / Print)
+**Splash → How it works → Home → New booth → Invite → Notification → Pick booth → Capture → Waiting → Decorate → Keepsake → Share** (→ Story / Print)
 
 Things you can try:
 
@@ -97,7 +97,6 @@ Things you can try:
 - **Invite:** copy the one-time link and choose who to invite; the next screen is their lock screen getting the push
 - **Capture:** uses your real camera. Confetti asks first, then the browser prompts for permission. 3-2-1 countdown with flash for each shot, plus timer, flash and flip (front/back) toggles. Your photos fill the strip through to Share, Story, Print and Home. If the camera is blocked or missing, you can carry on with placeholder shots.
 - **Waiting:** *Nudge Mia* and watch her half come in live; add a caption that follows the strip through to the story
-- **Layout pick:** reroll the AI suggestions and tap *why this one*
 - **Decorate:** add stickers and drag them around (double-click one to remove it), plus text styles, filters (B&W, warm, faded, bold) and borders
 - **Share:** send, post to story, save to your strips (it shows up on Home) or print with pickup/mail
 
@@ -130,7 +129,7 @@ components/
   AppShell.tsx        Flow state, screen transitions, toasts
   screens/            One file per screen: Splash, HowItWorks, Home, NewBooth,
                       Invite, Notification, PickBooth, Capture, Waiting,
-                      LayoutPick, Decorate, Keepsake, Share, Story, Print
+                      Decorate, Keepsake, Share, Story, Print
   ui/                 Shared pieces: kit (buttons, chips, headers), Strip, Icon
 lib/
   tokens.ts           Design tokens (colors, type, spacing)

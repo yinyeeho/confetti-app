@@ -13,7 +13,6 @@ import Notification from './screens/Notification'
 import PickBooth from './screens/PickBooth'
 import Capture from './screens/Capture'
 import Waiting from './screens/Waiting'
-import LayoutPick from './screens/LayoutPick'
 import Decorate from './screens/Decorate'
 import KeepsakePick from './screens/Keepsake'
 import Share from './screens/Share'
@@ -83,7 +82,6 @@ export default function AppShell() {
     pickBooth:    <PickBooth {...props} />,
     capture:      <Capture {...props} />,
     waiting:      <Waiting {...props} />,
-    layoutPick:   <LayoutPick {...props} />,
     decorate:     <Decorate {...props} />,
     keepsake:     <KeepsakePick {...props} />,
     share:        <Share {...props} />,

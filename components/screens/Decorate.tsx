@@ -50,7 +50,7 @@ export default function Decorate({ booth, update, go }: ScreenProps) {
   return (
     <Screen>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '4px 20px 0' }}>
-        <Tap aria-label="Back" onClick={() => go('layoutPick', -1)} style={{ width: 34, height: 34, borderRadius: 999, border: `2px solid ${colors.ink}`, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <Tap aria-label="Back" onClick={() => go(booth.solo ? 'home' : 'waiting', -1)} style={{ width: 34, height: 34, borderRadius: 999, border: `2px solid ${colors.ink}`, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <Icon name="back" size={14} strokeWidth={2} color={colors.ink} />
         </Tap>
         <span style={{ fontFamily: fonts.display, fontSize: 19, fontWeight: 700, color: colors.ink }}>Decorate</span>
@@ -164,7 +164,7 @@ export default function Decorate({ booth, update, go }: ScreenProps) {
       </div>
 
       <Footer>
-        <Button variant="outline" height={52} onClick={() => go('layoutPick', -1)}>Cancel</Button>
+        <Button variant="outline" height={52} onClick={() => go(booth.solo ? 'home' : 'waiting', -1)}>Cancel</Button>
         <Button height={52} grow={1.4} onClick={() => go('keepsake')} style={{ fontSize: 15 }}>Approve it!</Button>
       </Footer>
     </Screen>

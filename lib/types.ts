@@ -8,7 +8,6 @@ export type Screen =
   | 'pickBooth'
   | 'capture'
   | 'waiting'
-  | 'layoutPick'
   | 'decorate'
   | 'keepsake'
   | 'share'
@@ -34,4 +33,5 @@ export interface Booth {
   caption?: string
   keepsake: Keepsake
   photos: string[]   // data URLs captured from the camera, in shot order
+  friendDone?: boolean // the friend has shot their half
 }

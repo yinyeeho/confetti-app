@@ -62,7 +62,7 @@ export default function Capture({ booth, update, go, toast }: ScreenProps) {
 
   // Fresh roll each time; skip our ask card if the browser already granted access
   useEffect(() => {
-    update({ photos: [] })
+    update({ photos: [], friendDone: false })
     let cancelled = false
     const check = async () => {
       try {
@@ -122,7 +122,7 @@ export default function Capture({ booth, update, go, toast }: ScreenProps) {
         update({ photos: photos.current })
         later(() => {
           stopStream()
-          go(booth.solo ? 'layoutPick' : 'waiting')
+          go(booth.solo ? 'decorate' : 'waiting')
         }, 1100)
       } else {
         setPhase('idle')
